@@ -3,26 +3,23 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // 主角跳跃高度
-        //jumpHeight: 0,
-        // 主角跳跃持续时间
-        //jumpDuration: 0,
         // 最大移动速度
         maxMoveSpeed: 0,
         // 加速度
         accel: 0,
-
         // 主角水平方向速度
         _xSpeed:0, 
+        // 各方向移动标志位
         _accLeft:false,
         _accRight:false,
-        //_jumpFlag:false,
-        //_jumpAction:undefined,
+        _accUp:false,
+        // 发送事件标志位
+        _lastEventFlag:false,
+        _nowEventFlag:false,
     },
 
     onLoad () {
         this.initVar();
-        //this.initJumpAction();
         this.addKeyEventListen();
     },
 
@@ -50,35 +47,55 @@ cc.Class({
         switch(event.keyCode){
             case cc.macro.KEY.a:
                 this._accLeft = true;
-                //cc.log('leftDown');
+                this._nowEventFlag = true;
+                this.sendKeyEvent('action','left');
                 break;
             case cc.macro.KEY.d:
                 this._accRight = true;
-                //cc.log('rightDown');
+                this._nowEventFlag = true;
+                this.sendKeyEvent('action','right');
                 break;
-            /*case cc.macro.KEY.up:
-                this._jumpFlag = true;
-                this.playJump();
-                break;*/
+            case cc.macro.KEY.w:
+                this._accUp = true;
+                this._nowEventFlag = true;
+                this.sendKeyEvent('action','up');
         }
     },
     onKeyUp(event){
         switch(event.keyCode){
             case cc.macro.KEY.a:
                 this._accLeft = false;
+                this._nowEventFlag = false;
+                this._lastEventFlag = false;
                 this._xSpeed = 0;
-                //cc.log('leftUp');
+                this.sendKeyEvent('action','stop');
                 break;
             case cc.macro.KEY.d:
                 this._accRight = false;
+                this._nowEventFlag = false;
+                this._lastEventFlag = false;
                 this._xSpeed = 0;
-                //cc.log('rightUp');
+                this.sendKeyEvent('action','stop');
                 break;
-            /*case cc.macro.KEY.up:
-                this._jumpFlag = false;
-                break;*/
+            case cc.macro.KEY.w:
+                this._accUp = false;
+                this._nowEventFlag = false;
+                this._lastEventFlag = false;
+                break;
         }
     },
+
+    sendKeyEvent(eventName,state){
+        if(state == 'stop'){
+            cc.director.emit(eventName,state);
+        }
+        // 用两个标志位来记录上一个状态和下一个状态，确保在按住按键时，只发送一个事件
+        if(!this._lastEventFlag && this._nowEventFlag ){ 
+            cc.director.emit(eventName,state);
+            this._lastEventFlag = true;
+        }
+    },
+
 
     playerMove(dt){
         // 根据当前加速度方向每帧更新速度
@@ -95,15 +112,5 @@ cc.Class({
         // 根据当前速度更新主角的位置
         this.node.x += this._xSpeed * dt;
     },
-
-    /*initJumpAction(){
-        let jumpUp = cc.moveBy(this.jumpDuration, cc.v2(0, this.jumpHeight)).easing(cc.easeCubicActionOut());
-        // 下落
-        let jumpDown = cc.moveBy(this.jumpDuration, cc.v2(0, -this.jumpHeight)).easing(cc.easeCubicActionIn());
-        this._jumpAction = cc.sequence(jumpUp,jumpDown);
-    },
-    playJump(){
-        this.node.runAction(this._jumpAction);
-    },*/
 
 });
