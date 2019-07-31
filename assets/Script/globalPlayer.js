@@ -8,6 +8,8 @@ cc.Class({
     },
 
     onLoad() {
+        // 将该节点添加成常驻节点
+        cc.game.addPersistRootNode(this.node);
         // 监听移动事件
         this.addListenMoveEvent();
         // 获取 ArmatureDisplay

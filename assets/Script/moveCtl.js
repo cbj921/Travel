@@ -65,12 +65,14 @@ cc.Class({
         switch(event.keyCode){
             case cc.macro.KEY.a:
                 this._accLeft = false;
+                this._accRight = false;
                 this._nowEventFlag = false;
                 this._lastEventFlag = false;
                 this._xSpeed = 0;
                 this.sendKeyEvent('action','stop');
                 break;
             case cc.macro.KEY.d:
+                this._accLeft = false;
                 this._accRight = false;
                 this._nowEventFlag = false;
                 this._lastEventFlag = false;

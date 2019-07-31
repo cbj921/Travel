@@ -6,11 +6,12 @@
     ],
     [
       false,
-      false
+      false,
+      true
     ],
     [
       false,
-      false,
+      true,
       false
     ]
   ],
@@ -31,8 +32,8 @@
   "fit-width": false,
   "group-list": [
     "default",
-    "bg",
-    "train"
+    "player",
+    "otherRole"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
@@ -41,6 +42,5 @@
     "width": 960
   },
   "use-customize-simulator": true,
-  "use-project-simulator-setting": false,
-  "start-scene": "current"
+  "use-project-simulator-setting": false
 }
