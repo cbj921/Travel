@@ -3,7 +3,8 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
+        // 正在对话标志位，每次只进行一个对话
+        _talkingFlag:false,
     },
 
     onLoad () {
@@ -14,6 +15,10 @@ cc.Class({
     },
 
     playTalk(roleName){
-        cc.log(roleName);
+        if(!this._talkingFlag){
+            this._talkingFlag = true;
+            //TODO: 播放对话
+            cc.log(roleName);
+        }
     },
 });

@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "59b81b1c-b498-4bf8-bdd5-a4c9e78ed57b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "宫殿走廊": {
+      "ver": "1.0.4",
+      "uuid": "e0bb2843-1941-4a68-831f-6063a5f6ae79",
+      "rawTextureUuid": "59b81b1c-b498-4bf8-bdd5-a4c9e78ed57b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1920,
+      "height": 1080,
+      "rawWidth": 1920,
+      "rawHeight": 1080,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

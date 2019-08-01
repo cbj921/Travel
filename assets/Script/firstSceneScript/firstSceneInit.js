@@ -3,6 +3,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        player:cc.Node,
         playerStartPos:cc.Vec2,
         queen:cc.Node,
         queenStartPos:cc.Vec2,
@@ -17,7 +18,6 @@ cc.Class({
     },
 
     initPeoplePos(){
-        this.player = cc.find('Canvas/player'); // 获得 player 节点
         this.player.position = this.playerStartPos;
         this.queen.position = this.queenStartPos;
     },
