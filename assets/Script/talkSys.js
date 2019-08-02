@@ -72,6 +72,8 @@ cc.Class({
                 }else{
                     // 重置文本标志位
                     this._textIndex = 0;
+                    // 让对话对象为null
+                    this._talkTarget = null;
                     // 恢复角色移动
                     cc.director.emit('restartMove');
                     // 到时候在聊天框底部的提示，让玩家知道对话结束,这里暂时用 log 代替
@@ -82,6 +84,9 @@ cc.Class({
         }
     },
     nextTalk(){
+        if(this._talkTarget == null){
+            return;
+        }
         this.playTalk(this._talkTarget);
     },
 
