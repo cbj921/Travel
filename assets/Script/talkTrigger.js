@@ -21,7 +21,7 @@ cc.Class({
         if(this._talkFlag){
             cc.director.emit('talkStart',this.roleName);
             this.nodeLabel.active = false;
-            this._talkFlag = false;
+            this._talkFlag = false; 
         }
     },
 
@@ -34,6 +34,8 @@ cc.Class({
     onCollisionExit: function (other, self) {
         this.nodeLabel.active = false;
         this._talkFlag = false;
+        // 隐藏聊天框
+        cc.director.emit('textBoxHide');
     },
 
 });

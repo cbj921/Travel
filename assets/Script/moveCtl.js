@@ -21,6 +21,7 @@ cc.Class({
     onLoad () {
         this.initVar();
         this.addKeyEventListen();
+        this.listenStopOrRestartEvent(); // 等把聊天框做出了就可以开启
     },
 
     update (dt) {
@@ -32,6 +33,10 @@ cc.Class({
         // add key down and key up event
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+    },
+    removeKeyEventListen(){
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     },
 
     initVar(){
@@ -113,6 +118,12 @@ cc.Class({
         }
         // 根据当前速度更新主角的位置
         this.node.x += this._xSpeed * dt;
+    },
+
+    listenStopOrRestartEvent(){
+        // 监听停止或恢复走动事件
+        cc.director.on('lockMove',this.removeKeyEventListen,this);
+        cc.director.on('restartMove',this.addKeyEventListen,this);
     },
 
 });

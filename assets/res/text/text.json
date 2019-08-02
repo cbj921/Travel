@@ -1,0 +1,41 @@
+{
+    "cactus":{
+        "length":4,
+        "content":[
+            {
+                "role":"other",
+                "text":"......",
+                "choose":null,
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"要不要摸下仙人掌？",
+                "choose":{
+                    "1":{
+                        "text":"不怂，摸！",
+                        "link":2
+                    },
+                    "2":{
+                        "text":"不摸",
+                        "link":3
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"喜得一手刺(′д｀ )…彡…彡",
+                "choose":null,
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":"脑子没毛病还是别摸了",
+                "choose":null,
+                "end":true
+            }
+
+        ]
+    }
+}
