@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "9fd17fda-fd61-4102-b551-5c2d7de3d75b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "川普头像": {
+      "ver": "1.0.4",
+      "uuid": "8bc5aeba-dc69-4afa-98cc-5f0bb80ab903",
+      "rawTextureUuid": "9fd17fda-fd61-4102-b551-5c2d7de3d75b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 80,
+      "height": 80,
+      "rawWidth": 80,
+      "rawHeight": 80,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

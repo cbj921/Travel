@@ -37,6 +37,7 @@ cc.Class({
     removeKeyEventListen(){
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        this.initVar();
     },
 
     initVar(){
@@ -45,6 +46,8 @@ cc.Class({
         this._accLeft = false;
         this._accRight = false;
         this._jumpFlag = false; 
+        this._nowEventFlag = false;
+        this._lastEventFlag = false;
         this._jumpAction = undefined;
     },
 

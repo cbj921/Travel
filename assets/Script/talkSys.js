@@ -11,10 +11,14 @@ cc.Class({
         _textIndex:0,
         // 储存当前对话对象的名字
         _talkTarget:cc.String,
+        // 储存选择数据
+        _optionData:null,
         // json文本
         textJson: cc.JsonAsset,
         // 聊天语句预制体资源
         stateMentPrefab:cc.Prefab,
+        // 选择按钮预制体资源
+        optionPrefab:cc.Prefab,
         // 文本框弹出位置
         textBoxPos:cc.Vec2,
 
@@ -38,18 +42,20 @@ cc.Class({
         cc.director.on('textBoxHide',this.hideTextBox,this);
         // 监听聊天框点击事件,用来播放对话
         this.node.on('touchstart',this.nextTalk,this);
+        // 监听选择按钮点击事件
+        this.node.on('finishSelect',this.saveOptionData,this);
         // 加载文本文件
         this._textJson = this.textJson.json;
-        // 初始化结束提示标签
-        this._endLabel = this.node.getChildByName('endLabel');
-        this._endLabel.active = false;
+        // 初始化触摸框中的提示语
+        this._attentionLabel = this.node.getChildByName('attention').getComponent(cc.Label);
+        this._attentionLabel.string = "点击该区域进行下一句对话";
         // 初始化文本框位置
         this.node.position = cc.v2(250,2500);
         // scrollView 初始化
         this.content = this.scrollView.content;
         this.content.height = 0;
     },
-
+  
     playTalk(roleName) {
         if (!this._talkingFlag) {
             this._talkingFlag = true;
@@ -60,18 +66,17 @@ cc.Class({
             cc.director.emit('lockMove');
             // 让endLabel隐藏
             if(this._textIndex < 1){
-                this._endLabel.active = false;
+                this._attentionLabel.string = "点击该区域进行下一句对话";
             }
             // 弹出聊天框
             this.node.position = this.textBoxPos;
-            let stateMent = this.makeStateMentPrefab();
+            let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 
             if(this._textIndex < textLength){
-                // 暂且用cc.log来代替聊天框
                 if (roleText[this._textIndex].role == "other") {
-                    this.initStateMent(stateMent,1,roleText[this._textIndex].text); // 注意第二个参数，等有头像资源时修正
+                    this.initStateMent(stateMent,roleName,roleText[this._textIndex].text); 
                 } else {
-                    this.initStateMent(stateMent,2,roleText[this._textIndex].text); // 注意第二个参数，等有头像资源时修正
+                    this.initStateMent(stateMent,'player',roleText[this._textIndex].text); 
                 }
                 
                 // 存在choose属性的时候
@@ -80,19 +85,32 @@ cc.Class({
                     for (let i in roleText[this._textIndex].choose) {
                         if (i != undefined) {
                             // 这一步中生成按钮预制体，将数据写入按钮的对象中，点击后就可以得到相应数据了
-                            cc.log("choose " + i + ":"+roleText[this._textIndex].choose[i].text);
+                            let optionBtn = this.makeStateMentPrefab(this.optionPrefab);
+                            this.initOptionBtn(optionBtn,roleText[this._textIndex].choose[i].text,roleName,i);
+                            //cc.log("choose " + i + ":"+roleText[this._textIndex].choose[i].text);
                         }
                     }
 
-                    //cc.director.on('choose',(link)=>{textIndex = link;this._chooseFlag = true;},this)
-                    // 关闭对进行下一句的监听，this.node.off('touchstart',this.nextTalk,this);
-                    // 进行选项的选择，如果不选，则会一直停留在该界面，直到选择结束
-                    // 在做完选择后，textIndex = choose[i].link
-                    // cc.director.off('choose');
-                    // 开启对进行下一句的监听，this.node.on('touchstart',this.nextTalk,this);
+                    // 关闭对进行下一句的监听
+                    this.node.off('touchstart',this.nextTalk,this);
+                    this.node.on('finishSelect',(optionData)=>{
+                        // 此处有一个bug，第二次按钮后会多次触发，原因不明，但不会造成影响
+                        //cc.log("callBack");
+                        //cc.log(roleText[this._textIndex]);
+                        if(roleText[this._textIndex].choose != null){
+                            this._textIndex = Number(roleText[this._textIndex].choose[optionData.option].link);
+                        }
+                        this._chooseFlag = true;
+                        this.node.on('touchstart',this.nextTalk,this);
+                        this._talkingFlag = false; // 这一句一定不要忘了，否则无法再进入
+                        this.nextTalk();
+                        //cc.log("now: "+this._textIndex);
+                    },this);
+
+                    return;
 
                 }
-                if (roleText[this._textIndex].end != true) {
+                if (roleText[this._textIndex].end != true ) {
                     this._textIndex++;
                 }else{
                     // 重置文本标志位
@@ -101,8 +119,8 @@ cc.Class({
                     this._talkTarget = null;
                     // 恢复角色移动
                     cc.director.emit('restartMove');
-                    // 在聊天框底部的提示，让玩家知道对话结束
-                    this._endLabel.active = true;
+                    // 改变触摸框内容
+                    this._attentionLabel.string = "对话结束";
                 }
                 this._talkingFlag = false;
             }
@@ -119,23 +137,38 @@ cc.Class({
         this.node.position = cc.v2(250,2500);
     },
 
+    // 用来保存选择的数据
+    saveOptionData(optionData){
+        cc.log(optionData);
+    },
+
     // scrollView函数
-    makeStateMentPrefab(){
+    makeStateMentPrefab(prefab){
         this._stateMentCount++;
-        let stateMent = cc.instantiate(this.stateMentPrefab);
+        let stateMent = cc.instantiate(prefab);
         this.content.addChild(stateMent);
         let contentHeight = this._stateMentCount *(this.spacing + stateMent.height);
         let stateMentPos = cc.v2(this.stateMentX,-this._stateMentCount*(this.spacing + 0.5*stateMent.height));
         this.content.height = contentHeight;
         stateMent.position = stateMentPos;
+        if(prefab == this.optionPrefab){
+            // 如果生成的是按钮，我们就把按钮居中
+            stateMent.x = 0;
+        }
         this.scrollView.scrollToOffset(cc.v2(0,-(stateMent.y+this.spacing+100)),0.5);
         return stateMent;
     },
 
-    initStateMent(stateMent,headSprite,stateMentText){
+    initStateMent(stateMent,roleName,stateMentText){
         let stateMentScript = stateMent.getComponent('stateMent');
-        //stateMentScript.changeHeadSprite(headSprite);// 暂时注释，等有头像资源时恢复
+        stateMentScript.changeHeadSprite(roleName);
         stateMentScript.playTextLabel(stateMentText);
     },
+
+    initOptionBtn(optionBtn,text,target,option){
+        let optionScript = optionBtn.getComponent('chooseBtn');
+        optionScript.btnInit(this.node,text,target,option);
+    },
+
 
 });

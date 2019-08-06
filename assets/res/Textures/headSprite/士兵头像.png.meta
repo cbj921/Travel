@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "52a9084a-855c-43a0-8c06-651cccf372f6",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "士兵头像": {
+      "ver": "1.0.4",
+      "uuid": "08be77ee-5e4e-491b-922a-536bd9421000",
+      "rawTextureUuid": "52a9084a-855c-43a0-8c06-651cccf372f6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 80,
+      "height": 80,
+      "rawWidth": 80,
+      "rawHeight": 80,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

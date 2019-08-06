@@ -19,6 +19,13 @@ cc.Class({
         // 初始化角色状态 : stand
         this._armatureDisPlay.timeScale = 0.1;
         this._armatureDisPlay.playAnimation('stand',0);
+        // 监听停止事件
+        cc.director.on('lockMove',this.stopWalk,this);
+    },
+
+    stopWalk(){
+        this._armatureDisPlay.timeScale = 0.1;
+        this._armatureDisPlay.playAnimation('stand',0);
     },
 
     addListenMoveEvent(){
