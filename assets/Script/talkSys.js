@@ -13,6 +13,8 @@ cc.Class({
         _talkTarget:cc.String,
         // 储存选择数据
         _optionData:null,
+        // 用一个数组来储存选择的内容
+        _optionSaveArray:[],
         // json文本
         textJson: cc.JsonAsset,
         // 聊天语句预制体资源
@@ -139,7 +141,8 @@ cc.Class({
 
     // 用来保存选择的数据
     saveOptionData(optionData){
-        cc.log(optionData);
+        this._optionSaveArray.push(optionData);
+        cc.log(this._optionSaveArray);
     },
 
     // scrollView函数
@@ -147,15 +150,16 @@ cc.Class({
         this._stateMentCount++;
         let stateMent = cc.instantiate(prefab);
         this.content.addChild(stateMent);
-        let contentHeight = this._stateMentCount *(this.spacing + stateMent.height);
-        let stateMentPos = cc.v2(this.stateMentX,-this._stateMentCount*(this.spacing + 0.5*stateMent.height));
+        let contentHeight = this._stateMentCount*(stateMent.height + this.spacing)+this.spacing;
+        let stateMentPos = cc.v2(this.stateMentX,-this._stateMentCount*(stateMent.height+this.spacing));
         this.content.height = contentHeight;
         stateMent.position = stateMentPos;
         if(prefab == this.optionPrefab){
             // 如果生成的是按钮，我们就把按钮居中
-            stateMent.x = 0;
+            stateMent.x = -192.5;
         }
-        this.scrollView.scrollToOffset(cc.v2(0,-(stateMent.y+this.spacing+100)),0.5);
+        this.scrollView.scrollToOffset(cc.v2(0,this._stateMentCount*(stateMent.height+this.spacing)+this.spacing),0.5);
+        //this.scrollView.scrollToPercentVertical(0.6,0.5);
         return stateMent;
     },
 
