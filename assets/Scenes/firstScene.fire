@@ -2669,6 +2669,7 @@
     "_textIndex": 0,
     "_talkTarget": "String",
     "_optionData": null,
+    "_optionSaveArray": [],
     "textJson": {
       "__uuid__": "99573740-0ba3-415d-9571-1b254992adb4"
     },
@@ -2678,10 +2679,8 @@
     "optionPrefab": {
       "__uuid__": "9561cec9-e034-44d6-b5be-a1e24fb9fce5"
     },
-    "textBoxPos": {
-      "__type__": "cc.Vec2",
-      "x": 420,
-      "y": 650
+    "player": {
+      "__id__": 8
     },
     "scrollView": {
       "__id__": 57

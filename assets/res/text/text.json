@@ -5,7 +5,6 @@
             {
                 "role":"other",
                 "text":"......",
-                "choose":null,
                 "end":false
             },
             {
@@ -26,16 +25,87 @@
             {
                 "role":"player",
                 "text":"喜得一手刺(′д｀ )…彡…彡",
-                "choose":null,
                 "end":true
             },
             {
                 "role":"player",
                 "text":"脑子没毛病还是别摸了",
-                "choose":null,
                 "end":true
             }
 
+        ]
+    },
+    "queen":{
+        "length":9,
+        "content":[
+            {
+                "role":"other",
+                "text":"你是来自哪里？",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你的回答：",
+                "choose":{
+                    "1":{
+                        "text":"未来",
+                        "link":3
+                    },
+                    "2":{
+                        "text":"关你啥事！",
+                        "link":2
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"大胆！守卫处理掉他！",
+                "end":true,
+                "gameOver":true
+            },
+            {
+                "role":"other",
+                "text":"我要如何相信你说的话呢？",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"我无法证明，但是我就是来自未来",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"守卫！把他抓起来！",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"我该怎么做？",
+                "choose":{
+                    "1":{
+                        "text":"逃跑",
+                        "link":8
+                    },
+                    "2":{
+                        "text":"干就完事了！",
+                        "link":7
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"把尸体拖出去",
+                "end":true,
+                "gameOver":true
+            },
+            {
+                "role":"player",
+                "text":"遛了遛了",
+                "nextScene":"sceond",
+                "end":true
+            }
         ]
     }
 }

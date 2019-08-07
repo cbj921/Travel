@@ -21,8 +21,8 @@ cc.Class({
         stateMentPrefab:cc.Prefab,
         // 选择按钮预制体资源
         optionPrefab:cc.Prefab,
-        // 文本框弹出位置
-        textBoxPos:cc.Vec2,
+        // 主角节点
+        player:cc.Node,
 
         // 以下是 scrollView 的属性
         scrollView: {
@@ -71,7 +71,8 @@ cc.Class({
                 this._attentionLabel.string = "点击该区域进行下一句对话";
             }
             // 弹出聊天框
-            this.node.position = this.textBoxPos;
+            this.node.x = this.player.x;
+            this.node.y = 746;
             let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 
             if(this._textIndex < textLength){
@@ -82,7 +83,7 @@ cc.Class({
                 }
                 
                 // 存在choose属性的时候
-                if (roleText[this._textIndex].choose != null) {
+                if (roleText[this._textIndex].choose != undefined) {
                     this._chooseFlag = false;       // 每次进入选择，都要复位标志位
                     for (let i in roleText[this._textIndex].choose) {
                         if (i != undefined) {
@@ -99,7 +100,7 @@ cc.Class({
                         // 此处有一个bug，第二次按钮后会多次触发，原因不明，但不会造成影响
                         //cc.log("callBack");
                         //cc.log(roleText[this._textIndex]);
-                        if(roleText[this._textIndex].choose != null){
+                        if(roleText[this._textIndex].choose != undefined){
                             this._textIndex = Number(roleText[this._textIndex].choose[optionData.option].link);
                         }
                         this._chooseFlag = true;
@@ -112,6 +113,17 @@ cc.Class({
                     return;
 
                 }
+                // 这个用来判断是否加载下一个场景
+                if(roleText[this._textIndex].nextScene !=undefined){
+                    // TODO:进行渐隐场景切换
+                    cc.log(roleText[this._textIndex].nextScene);
+                }
+                // 用来判断是否游戏结束
+                if(roleText[this._textIndex].gameOver !=undefined){
+                    // TODO:弹出游戏结束界面，并且回到开始场景
+                    cc.log('gameOver');
+                }
+
                 if (roleText[this._textIndex].end != true ) {
                     this._textIndex++;
                 }else{
