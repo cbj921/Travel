@@ -56,6 +56,8 @@ cc.Class({
         // scrollView 初始化
         this.content = this.scrollView.content;
         this.content.height = 0;
+        // 得到背景节点
+        this.canvas = cc.find('Canvas');
     },
   
     playTalk(roleName) {
@@ -116,6 +118,7 @@ cc.Class({
                 // 这个用来判断是否加载下一个场景
                 if(roleText[this._textIndex].nextScene !=undefined){
                     // TODO:进行渐隐场景切换
+                    this.loadSceneAnim(roleText[this._textIndex].nextScene);
                     cc.log(roleText[this._textIndex].nextScene);
                 }
                 // 用来判断是否游戏结束
@@ -155,6 +158,29 @@ cc.Class({
     saveOptionData(optionData){
         this._optionSaveArray.push(optionData);
         cc.log(this._optionSaveArray);
+    },
+
+    loadSceneAnim(SceneName){
+        let walk = cc.moveTo(2,cc.v2(3960,208)); // 移动角色到相应位置
+        // 使用渐隐效果来加载场景
+        let loadScene = cc.callFunc(()=>{                    
+            let fadeOut = cc.fadeOut(4);
+            let loadScene = cc.callFunc(()=>{
+                cc.director.loadScene(SceneName,()=>{
+                    this.player.position = cc.v2(146,208);
+                    cc.director.emit('action','stop');
+                });
+            });
+            let seqLoad = cc.sequence(fadeOut,loadScene);
+            this.canvas.runAction(seqLoad);
+        });
+        let seqWalk = cc.sequence(walk,loadScene);
+        
+        cc.director.preloadScene(SceneName,()=>{
+            console.log('preload completed!');
+        });
+        this.player.runAction(seqWalk);
+        cc.director.emit('action','right');
     },
 
     // scrollView函数

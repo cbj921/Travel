@@ -5,8 +5,8 @@ cc.Class({
     properties: {
         player:cc.Node,
         playerStartPos:cc.Vec2,
-        queen:cc.Node,
-        queenStartPos:cc.Vec2,
+        //queen:cc.Node,
+        //queenStartPos:cc.Vec2,
     },
 
     onLoad () {
@@ -19,7 +19,7 @@ cc.Class({
 
     initPeoplePos(){
         this.player.position = this.playerStartPos;
-        this.queen.position = this.queenStartPos;
+        //this.queen.position = this.queenStartPos;
     },
 
     // update (dt) {},

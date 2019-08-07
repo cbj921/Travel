@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "66d018a7-12aa-47c0-85da-81a4c5d857e8",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "神庙": {
+      "ver": "1.0.4",
+      "uuid": "20656fb3-c998-4a41-b180-2742fb6d504c",
+      "rawTextureUuid": "66d018a7-12aa-47c0-85da-81a4c5d857e8",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 634,
+      "height": 500,
+      "rawWidth": 634,
+      "rawHeight": 500,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

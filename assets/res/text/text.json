@@ -103,7 +103,7 @@
             {
                 "role":"player",
                 "text":"遛了遛了",
-                "nextScene":"sceond",
+                "nextScene":"secondScene",
                 "end":true
             }
         ]

@@ -4,7 +4,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        player:cc.Node,
+        //player:cc.Node,
         // 用一个数组来储存触发移动的点，假如不止两张图的时候
         limitPos:[cc.Vec2],
         // 储存摄像机移到的点,第一个为摄像机初始的位置
@@ -16,6 +16,7 @@ cc.Class({
     onLoad () {
         this._limitIndex = 0;
         this._movePosIndex = 0;
+        this.player = cc.find('player');
     },
 
     update (dt) {
