@@ -21,6 +21,8 @@ cc.Class({
         stateMentPrefab:cc.Prefab,
         // 选择按钮预制体资源
         optionPrefab:cc.Prefab,
+        // 游戏结束预制体
+        gameOverPrefab:cc.Prefab,
         // 主角节点
         player:cc.Node,
 
@@ -64,7 +66,7 @@ cc.Class({
         if (!this._talkingFlag) {
             this._talkingFlag = true;
             this._talkTarget = roleName;
-            let roleText = this._textJson[roleName].content;
+            this.roleText = this._textJson[roleName].content;
             let textLength = this._textJson[roleName].length;
             // 当角色开始对话的时候，角色是不能移动的,向moveCtl脚本发送lockMove事件
             cc.director.emit('lockMove');
@@ -78,20 +80,20 @@ cc.Class({
             let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 
             if(this._textIndex < textLength){
-                if (roleText[this._textIndex].role == "other") {
-                    this.initStateMent(stateMent,roleName,roleText[this._textIndex].text); 
+                if (this.roleText[this._textIndex].role == "other") {
+                    this.initStateMent(stateMent,roleName,this.roleText[this._textIndex].text); 
                 } else {
-                    this.initStateMent(stateMent,'player',roleText[this._textIndex].text); 
+                    this.initStateMent(stateMent,'player',this.roleText[this._textIndex].text); 
                 }
                 
                 // 存在choose属性的时候
-                if (roleText[this._textIndex].choose != undefined) {
+                if (this.roleText[this._textIndex].choose != undefined) {
                     this._chooseFlag = false;       // 每次进入选择，都要复位标志位
-                    for (let i in roleText[this._textIndex].choose) {
+                    for (let i in this.roleText[this._textIndex].choose) {
                         if (i != undefined) {
                             // 这一步中生成按钮预制体，将数据写入按钮的对象中，点击后就可以得到相应数据了
                             let optionBtn = this.makeStateMentPrefab(this.optionPrefab);
-                            this.initOptionBtn(optionBtn,roleText[this._textIndex].choose[i].text,roleName,i);
+                            this.initOptionBtn(optionBtn,this.roleText[this._textIndex].choose[i].text,roleName,i);
                             //cc.log("choose " + i + ":"+roleText[this._textIndex].choose[i].text);
                         }
                     }
@@ -99,35 +101,41 @@ cc.Class({
                     // 关闭对进行下一句的监听
                     this.node.off('touchstart',this.nextTalk,this);
                     this.node.on('finishSelect',(optionData)=>{
-                        // 此处有一个bug，第二次按钮后会多次触发，原因不明，但不会造成影响
-                        //cc.log("callBack");
-                        //cc.log(roleText[this._textIndex]);
-                        if(roleText[this._textIndex].choose != undefined){
-                            this._textIndex = Number(roleText[this._textIndex].choose[optionData.option].link);
+                        if(!this._chooseFlag){
+                            // bug已修复
+                            //cc.log("callBack:"+this._textIndex);
+                            //cc.log(this.roleText);
+                            //cc.log(this.roleText[this._textIndex]);
+                            if(this.roleText[this._textIndex].choose != undefined){
+                                this._textIndex = Number(this.roleText[this._textIndex].choose[optionData.option].link);
+                            }
+                            this._chooseFlag = true;
+                            this.node.on('touchstart',this.nextTalk,this);
+                            this._talkingFlag = false; // 这一句一定不要忘了，否则无法再进入
+                            //cc.log("now: "+this._textIndex);
+                            this.nextTalk();
+                            //cc.log('rset:'+this._textIndex);
                         }
-                        this._chooseFlag = true;
-                        this.node.on('touchstart',this.nextTalk,this);
-                        this._talkingFlag = false; // 这一句一定不要忘了，否则无法再进入
-                        this.nextTalk();
-                        //cc.log("now: "+this._textIndex);
                     },this);
 
                     return;
 
                 }
                 // 这个用来判断是否加载下一个场景
-                if(roleText[this._textIndex].nextScene !=undefined){
+                if(this.roleText[this._textIndex].nextScene !=undefined){
                     // TODO:进行渐隐场景切换
-                    this.loadSceneAnim(roleText[this._textIndex].nextScene);
-                    cc.log(roleText[this._textIndex].nextScene);
+                    this.loadSceneAnim(this.roleText[this._textIndex].nextScene);
+                    cc.log(this.roleText[this._textIndex].nextScene);
                 }
                 // 用来判断是否游戏结束
-                if(roleText[this._textIndex].gameOver !=undefined){
+                if(this.roleText[this._textIndex].gameOver !=undefined){
                     // TODO:弹出游戏结束界面，并且回到开始场景
+                    this.gameOver();
                     cc.log('gameOver');
+                    return;
                 }
 
-                if (roleText[this._textIndex].end != true ) {
+                if (this.roleText[this._textIndex].end != true ) {
                     this._textIndex++;
                 }else{
                     // 重置文本标志位
@@ -181,6 +189,26 @@ cc.Class({
         });
         this.player.runAction(seqWalk);
         cc.director.emit('action','right');
+    },
+
+    gameOver(){
+        this._attentionLabel.node.color = cc.color(255,0,0);
+        this._attentionLabel.string = "游戏结束！";
+        let fadeOut = cc.fadeOut(3);
+        let loadScene = cc.callFunc(()=>{
+            cc.director.loadScene('startScene',()=>{
+                this.player.destroy();
+                this.node.destroy();
+            });
+        });
+        let seqLoad = cc.sequence(fadeOut,loadScene);
+
+        cc.director.preloadScene("startScene",()=>{
+            console.log('preload completed!');
+        });
+        this.canvas.runAction(seqLoad);
+        //this.player.runAction(fadeOut);
+        //this.node.runAction(fadeOut);
     },
 
     // scrollView函数

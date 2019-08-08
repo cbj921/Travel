@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "68f20afc-ad00-4163-a0b0-50302d372d1a",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "埃及守卫 -_": {
+      "ver": "1.0.4",
+      "uuid": "4bee78c1-b651-45f4-8ee4-a9d1262feb3b",
+      "rawTextureUuid": "68f20afc-ad00-4163-a0b0-50302d372d1a",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 5.5,
+      "offsetY": 3.5,
+      "trimX": 76,
+      "trimY": 36,
+      "width": 107,
+      "height": 272,
+      "rawWidth": 248,
+      "rawHeight": 351,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

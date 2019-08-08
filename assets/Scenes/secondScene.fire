@@ -41,8 +41,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.9657573075147362,
-      "y": 0.9657573075147362,
+      "x": 0.4203702840321511,
+      "y": 0.4203702840321511,
       "z": 1
     },
     "_quat": {
@@ -198,9 +198,9 @@
     },
     "_enabled": true,
     "_clip": {
-      "__uuid__": "a276b27e-02eb-4741-b23d-718a27248e48"
+      "__uuid__": "e0312366-8676-4503-8042-f88fab5a49a9"
     },
-    "_volume": 0.3,
+    "_volume": 0.7,
     "_mute": false,
     "_loop": true,
     "playOnLoad": true,
@@ -1813,7 +1813,7 @@
     },
     "_enabled": true,
     "_talkFlag": false,
-    "roleName": "secretMan",
+    "roleName": "secretMan2",
     "_id": "e0EbHwnv1BDrpLJQI/5g+u"
   },
   {

@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "a640deea-f95d-4c81-ba7c-dd88c73911c3",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "武则天": {
+      "ver": "1.0.4",
+      "uuid": "97e5fcf5-fd8d-40ca-890e-0b8dd3ae3a36",
+      "rawTextureUuid": "a640deea-f95d-4c81-ba7c-dd88c73911c3",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 124,
+      "height": 315,
+      "rawWidth": 124,
+      "rawHeight": 315,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
