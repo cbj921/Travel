@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-31 11:14:28
+ * @LastEditTime: 2019-08-09 11:11:54
+ * @LastEditors: Please set LastEditors
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -75,7 +82,7 @@ cc.Class({
                 this._attentionLabel.string = "点击该区域进行下一句对话";
             }
             // 弹出聊天框
-            this.node.x = this.player.x;
+            this.node.x = this.player.x + 200;
             this.node.y = 746;
             let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 
@@ -169,6 +176,7 @@ cc.Class({
     },
 
     loadSceneAnim(SceneName){
+        this.canvas = cc.find('Canvas');
         let walk = cc.moveTo(2,cc.v2(3960,208)); // 移动角色到相应位置
         // 使用渐隐效果来加载场景
         let loadScene = cc.callFunc(()=>{                    
@@ -192,6 +200,7 @@ cc.Class({
     },
 
     gameOver(){
+        this.canvas = cc.find('Canvas');
         this._attentionLabel.node.color = cc.color(255,0,0);
         this._attentionLabel.string = "游戏结束！";
         let fadeOut = cc.fadeOut(3);

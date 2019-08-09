@@ -36,11 +36,11 @@
         ]
     },
     "queen":{
-        "length":9,
+        "length":15,
         "content":[
             {
                 "role":"other",
-                "text":"你是来自哪里？",
+                "text":"你就是出现在宫殿外面的外邦人？",
                 "end":false
             },
             {
@@ -48,11 +48,11 @@
                 "text":"你的回答：",
                 "choose":{
                     "1":{
-                        "text":"未来",
+                        "text":"是的",
                         "link":3
                     },
                     "2":{
-                        "text":"关你啥事！",
+                        "text":"关你屁事！",
                         "link":2
                     }
                 },
@@ -66,44 +66,560 @@
             },
             {
                 "role":"other",
-                "text":"我要如何相信你说的话呢？",
+                "text":"你是如何来到这里的？",
                 "end":false
             },
             {
                 "role":"player",
-                "text":"我无法证明，但是我就是来自未来",
+                "text":"醒来就在外面了",
                 "end":false
             },
             {
                 "role":"other",
-                "text":"守卫！把他抓起来！",
+                "text":"为何你身上穿着如此奇装异服？",
                 "end":false
             },
             {
                 "role":"player",
-                "text":"我该怎么做？",
+                "text":"这是来自未来的衣服",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"未来？未来是哪个国度？",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"......",
+                "choose":{
+                    "1":{
+                        "text":"解释",
+                        "link":9
+                    },
+                    "2":{
+                        "text":"不解释",
+                        "link":11
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"未来就是@#$$%^&*",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"我觉得你应该是神智不清了",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"守卫，把他抓起来，等会用刑拷问！",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"该怎么做？",
                 "choose":{
                     "1":{
                         "text":"逃跑",
-                        "link":8
+                        "link":13
                     },
                     "2":{
                         "text":"干就完事了！",
-                        "link":7
+                        "link":14
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"遛了遛了",
+                "nextScene":"secondScene",
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":"被守卫乱刀砍死了",
+                "gameOver":true,
+                "end":true
+            }
+        ]
+    },
+    "guide1":{
+        "length":4,
+        "content":[
+            {
+                "role":"other",
+                "text":"女王召见你",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你决定？",
+                "choose":{
+                    "1":{
+                        "text":"老子不去！",
+                        "link":2
+                    },
+                    "2":{
+                        "text":"好的",
+                        "link":3
                     }
                 },
                 "end":false
             },
             {
                 "role":"other",
-                "text":"把尸体拖出去",
-                "end":true,
-                "gameOver":true
+                "text":"给老子死！",
+                "gameOver":true,
+                "end":true
             },
             {
                 "role":"player",
-                "text":"遛了遛了",
-                "nextScene":"secondScene",
+                "text":" 我这就去见女王",
+                "end":true
+            }
+
+        ]
+    },
+    "guide2":{
+        "length":4,
+        "content":[
+            {
+                "role":"other",
+                "text":"别磨磨唧唧的，女王召见你",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你决定？",
+                "choose":{
+                    "1":{
+                        "text":"没看到正在走路吗！",
+                        "link":2
+                    },
+                    "2":{
+                        "text":"马上到",
+                        "link":3
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"什么口气！给老子死！",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":" 我这就去见女王",
+                "end":true
+            }
+
+        ]
+    },
+    "cat":{
+        "length":7,
+        "content":[
+            {
+                "role":"other",
+                "text":"喵 ~ ~ ~",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"面前这只猫你打算：",
+                "choose":{
+                    "1":{
+                        "text":"抚摸",
+                        "link":2
+                    },
+                    "2":{
+                        "text":"模仿猫叫",
+                        "link":4
+                    },
+                    "3":{
+                        "text":"不摸",
+                        "link":6
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"喵！！喵！！挠你！",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"被猫挠死了",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":"喵~~喵~~",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"(白眼)",
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":" 这猫好凶的样子，还是不摸了",
+                "end":true
+            }
+
+        ]
+    },
+    "secretMan1":{
+        "length":13,
+        "content":[
+            {
+                "role":"other",
+                "text":"你来了",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你是？",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"你可以叫我神秘人",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"神秘人？",
+                "choose":{
+                    "1":{
+                        "text":"可是感觉不神秘",
+                        "link":4
+                    },
+                    "2":{
+                        "text":"神秘在哪里？",
+                        "link":5
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"披着斗篷就叫神秘人了？",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"你难道就不好奇为什么会来到这里吗？",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"我穿越了？我记得我之前是在···",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"想不起来了吧，嘿嘿",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"这到底怎么回事？",
+                "choose":{
+                    "1":{
+                        "text":"揍他一顿",
+                        "link":9
+                    },
+                    "2":{
+                        "text":"让他解释",
+                        "link":11
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你笑得好欠揍，我要揍你",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"年轻人脾气这么暴躁可不好，桀桀",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":"你能告诉我发生了什么吗？",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"向前走，真相自然就知道了，我们后面见",
+                "end":true
+            }
+        ]
+    },
+    "secretMan2":{
+        "length":2,
+        "content":[
+            {
+                "role":"other",
+                "text":"你来了",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"恭喜活着来到第二个地方，你越来越接近真相了",
+                "end":true
+            }
+        ]
+    },
+    "solider1":{
+        "length":7,
+        "content":[
+            {
+                "role":"other",
+                "text":"（小声嘀咕）听说凯撒大人和一个外来的人正在讨论大事",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"嗯！你是谁，怎么鬼鬼祟祟的在我旁边",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"怎么回答：",
+                "choose":{
+                    "1":{
+                        "text":"要你管！？",
+                        "link":3
+                    },
+                    "2":{
+                        "text":"路过",
+                        "link":4
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"你死定了！",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"player",
+                "text":"我只是路过而已",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"路过就赶紧走，别在旁边待着",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"(小声)凯撒大人要我迎接一位贵客，不知道会是谁...",
+                "end":true
+            }
+        ]
+    },
+    "solider2":{
+        "length":2,
+        "content":[
+            {
+                "role":"other",
+                "text":"我要立正站好，第一天上班得认真点",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"说到上班...唉..",
+                "end":true
+            }
+        ]
+    },
+    "solider3":{
+        "length":2,
+        "content":[
+            {
+                "role":"other",
+                "text":"zzZ···zzZ···",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"站着也能睡着吗",
+                "end":true
+            }
+        ]
+    },
+    "kaisa":{
+        "length":22,
+        "content":[
+            {
+                "role":"other",
+                "text":"你就是神秘人所说的那位吧",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"(懵逼)",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"回答上我的几个问题，就让你通过",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"来吧",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"兔子几条腿 ?",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"答案：",
+                "choose":{
+                    "1":{
+                        "text":"两条",
+                        "link":6
+                    },
+                    "2":{
+                        "text":"四条",
+                        "link":7
+                    },
+                    "3":{
+                        "text":"拒绝回答！",
+                        "link":8
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"错了，你不符合资格，斩了",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"other",
+                "text":"虽然你答对了，但不够强硬啊，拖出去斩了",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"other",
+                "text":"哟呵，脾气不小，不过我喜欢",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"那我们继续下一题",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"一只鸡几条腿?",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"你这都啥问题啊？？？",
+                "choose":{
+                    "1":{
+                        "text":"两条",
+                        "link":14
+                    },
+                    "2":{
+                        "text":"三条",
+                        "link":12
+                    },
+                    "3":{
+                        "text":"仿佛在侮辱我智商",
+                        "link":13
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"送分题都能答错?斩了",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"other",
+                "text":"答不上就答不上，装什么，斩了！",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"other",
+                "text":"恭喜答对了，接下来就是最难的一题了",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"笼子里有鸡兔共10只，一共30只脚，问鸡多少兔多少",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"......",
+                "choose":{
+                    "1":{
+                        "text":"5,5",
+                        "link":18
+                    },
+                    "2":{
+                        "text":"2,8",
+                        "link":17
+                    }
+                },
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"答错了，斩",
+                "gameOver":true,
+                "end":true
+            },
+            {
+                "role":"other",
+                "text":"没想到这么难你也答对了",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"看来你真的是天选之子",
+                "end":false
+            },
+            {
+                "role":"player",
+                "text":"...(小学生题目)",
+                "end":false
+            },
+            {
+                "role":"other",
+                "text":"好了，祝你下个场景好运",
+                "nextScene":"thirdScene",
                 "end":true
             }
         ]

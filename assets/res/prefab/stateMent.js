@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-04 12:13:46
+ * @LastEditTime: 2019-08-09 10:22:52
+ * @LastEditors: Please set LastEditors
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -29,9 +36,22 @@ cc.Class({
             case "cat":
                 headSprite = this.headTextures[3];
                 break;
-            case "guide":
+            case "guide1":
                 headSprite = this.headTextures[4];
                 break;
+            case "guide2":
+                headSprite = this.headTextures[4];
+                break;
+            case "secretMan1":
+            case "secretMan2":
+                headSprite = this.headTextures[5];
+                break;
+            case "solider1":
+            case "solider2":
+            case "solider3":
+                headSprite = this.headTextures[6];
+                break;
+            
         }
         this.headSprite.spriteFrame = headSprite;
     },
