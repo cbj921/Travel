@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "bd99c2c6-fb67-4a2c-a5b3-76d4d9a573a6",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "武则天头像": {
+      "ver": "1.0.4",
+      "uuid": "5c735302-c41c-4511-a47a-b4bb02013377",
+      "rawTextureUuid": "bd99c2c6-fb67-4a2c-a5b3-76d4d9a573a6",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 80,
+      "height": 80,
+      "rawWidth": 80,
+      "rawHeight": 80,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

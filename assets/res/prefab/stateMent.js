@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-04 12:13:46
- * @LastEditTime: 2019-08-09 10:22:52
+ * @LastEditTime: 2019-08-09 15:34:29
  * @LastEditors: Please set LastEditors
  */
 
@@ -51,7 +51,31 @@ cc.Class({
             case "solider3":
                 headSprite = this.headTextures[6];
                 break;
-            
+            case "maid1":
+            case "maid2":
+                headSprite = this.headTextures[7];
+                break;
+            case "wuzetian":
+                headSprite = this.headTextures[8];
+                break;
+            case "guard1":
+            case "guard2":
+            case "guard3":
+                headSprite = this.headTextures[9];
+                break;
+            case "trump":
+                headSprite = this.headTextures[10];
+                break;
+            case "starfish":
+                headSprite = this.headTextures[11];
+                break;
+            case "crab":
+                headSprite = this.headTextures[12];
+                break;
+            case "kaisa":
+                headSprite = this.headTextures[13];
+                break;
+    
         }
         this.headSprite.spriteFrame = headSprite;
     },

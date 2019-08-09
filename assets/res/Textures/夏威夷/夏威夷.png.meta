@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "a196290a-b451-4f57-a325-6fba816c903b",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "夏威夷": {
+      "ver": "1.0.4",
+      "uuid": "cad2863a-9b2b-4f9e-b395-9c1c8f8877a1",
+      "rawTextureUuid": "a196290a-b451-4f57-a325-6fba816c903b",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1920,
+      "height": 1080,
+      "rawWidth": 1920,
+      "rawHeight": 1080,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

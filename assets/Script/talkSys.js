@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-31 11:14:28
- * @LastEditTime: 2019-08-09 11:11:54
+ * @LastEditTime: 2019-08-09 16:19:57
  * @LastEditors: Please set LastEditors
  */
 
@@ -82,7 +82,7 @@ cc.Class({
                 this._attentionLabel.string = "点击该区域进行下一句对话";
             }
             // 弹出聊天框
-            this.node.x = this.player.x + 200;
+            this.node.x = this.player.x ;
             this.node.y = 746;
             let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 

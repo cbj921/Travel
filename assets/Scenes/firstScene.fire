@@ -1426,7 +1426,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 120,
+      "width": 160,
       "height": 40
     },
     "_anchorPoint": {
@@ -1469,8 +1469,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "神秘人",
-    "_N$string": "神秘人",
+    "_string": "鼠标单击",
+    "_N$string": "鼠标单击",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -2435,12 +2435,12 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 1,
-      "y": -35
+      "y": 7
     },
     "_size": {
       "__type__": "cc.Size",
       "width": 225,
-      "height": 215
+      "height": 300
     },
     "_id": "b1rQfaQSxEvYpU8LPkIkpA"
   },

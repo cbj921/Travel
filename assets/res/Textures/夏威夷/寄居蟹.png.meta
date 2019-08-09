@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "f8903069-e90b-4d8b-a0ea-e4d3b9bebcf4",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "寄居蟹": {
+      "ver": "1.0.4",
+      "uuid": "c020f4b8-8319-4296-83a2-69a115b02db0",
+      "rawTextureUuid": "f8903069-e90b-4d8b-a0ea-e4d3b9bebcf4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 135,
+      "height": 114,
+      "rawWidth": 135,
+      "rawHeight": 114,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
