@@ -911,7 +911,7 @@
         ]
     },
     "trump":{
-        "length":4,
+        "length":6,
         "content":[
             {
                 "role":"other",
@@ -948,18 +948,13 @@
                 "end":false
             },
             {
-                "role":"player",
-                "text":"中弹",
-                "end":false
-            },
-            {
                 "role":"other",
                 "text":"被冲浪板打倒在地",
                 "end":false
             },
             {
                 "role":"player",
-                "text":"我得赶紧遛...",
+                "text":"中弹倒地",
                 "nextScene":"endScene",
                 "end":true
             }

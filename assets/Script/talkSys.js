@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-07-31 11:14:28
- * @LastEditTime: 2019-08-09 16:19:57
+ * @LastEditTime: 2019-08-10 09:41:39
  * @LastEditors: Please set LastEditors
  */
 
@@ -82,7 +82,10 @@ cc.Class({
                 this._attentionLabel.string = "点击该区域进行下一句对话";
             }
             // 弹出聊天框
-            this.node.x = this.player.x ;
+            this.node.x = this.player.x +200;
+            if(this.player.x>1200 && this.player.x<1920){
+                this.node.x = this.player.x -200;
+            }
             this.node.y = 746;
             let stateMent = this.makeStateMentPrefab(this.stateMentPrefab);
 
@@ -172,14 +175,42 @@ cc.Class({
     // 用来保存选择的数据
     saveOptionData(optionData){
         this._optionSaveArray.push(optionData);
-        cc.log(this._optionSaveArray);
+        //cc.log(this._optionSaveArray);
     },
 
     loadSceneAnim(SceneName){
         this.canvas = cc.find('Canvas');
         let walk = cc.moveTo(2,cc.v2(3960,208)); // 移动角色到相应位置
-        // 使用渐隐效果来加载场景
-        let loadScene = cc.callFunc(()=>{                    
+        if(SceneName != 'endScene'){
+            // 使用渐隐效果来加载场景
+            let loadScene = cc.callFunc(()=>{                    
+                let fadeOut = cc.fadeOut(4);
+                let loadScene = cc.callFunc(()=>{
+                    cc.director.loadScene(SceneName,()=>{
+                        this.player.position = cc.v2(146,208);
+                        cc.director.emit('action','stop');
+                    });
+                });
+                let seqLoad = cc.sequence(fadeOut,loadScene);
+                this.canvas.runAction(seqLoad);
+            });
+            let seqWalk = cc.sequence(walk,loadScene);
+
+            cc.director.preloadScene(SceneName,()=>{
+                console.log('preload completed!');
+            });
+            this.player.runAction(seqWalk);
+            cc.director.emit('action','right');
+        }else if(SceneName == 'endScene'){
+            let randomNum = Math.floor(Math.random()*10);
+            cc.log(randomNum);
+            if(randomNum < 4){
+                SceneName = 'endScene1';
+            }else if(randomNum>4 && randomNum<7){
+                SceneName = 'endScene2';
+            }else{
+                SceneName = 'endScene3';
+            }
             let fadeOut = cc.fadeOut(4);
             let loadScene = cc.callFunc(()=>{
                 cc.director.loadScene(SceneName,()=>{
@@ -189,18 +220,14 @@ cc.Class({
             });
             let seqLoad = cc.sequence(fadeOut,loadScene);
             this.canvas.runAction(seqLoad);
-        });
-        let seqWalk = cc.sequence(walk,loadScene);
+        }
         
-        cc.director.preloadScene(SceneName,()=>{
-            console.log('preload completed!');
-        });
-        this.player.runAction(seqWalk);
-        cc.director.emit('action','right');
     },
+
 
     gameOver(){
         this.canvas = cc.find('Canvas');
+        this.bgm = cc.find('BGM');
         this._attentionLabel.node.color = cc.color(255,0,0);
         this._attentionLabel.string = "游戏结束！";
         let fadeOut = cc.fadeOut(3);
@@ -208,6 +235,7 @@ cc.Class({
             cc.director.loadScene('startScene',()=>{
                 this.player.destroy();
                 this.node.destroy();
+                this.bgm.destroy();
             });
         });
         let seqLoad = cc.sequence(fadeOut,loadScene);

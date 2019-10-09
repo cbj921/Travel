@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-07-29 11:14:26
+ * @LastEditTime: 2019-08-10 08:51:58
+ * @LastEditors: Please set LastEditors
+ */
 // 挂载在 开始 按钮下
 cc.Class({
     extends: cc.Component,
@@ -22,6 +29,7 @@ cc.Class({
     },
 
     disappearAction(node){
+        this.button.active = false;
         // 在按键和标题消失后给player发送事件，让其播放动画
         let destroy = cc.callFunc(()=>{
             if(this._sendEventCount < 1){ // 让开始事件只触发一次
